@@ -4,7 +4,8 @@ const pool = require("../config/db")
 
 // Generate JWT
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
+  //console.log("secret key is" + process.env.JWT_SECRET)
+  return jwt.sign({ id }, "S@cret123#", {
     expiresIn: "30d",
   })
 }
@@ -14,8 +15,8 @@ const generateToken = (id) => {
 // @access  Public/Admin for role assignment
 exports.registerUser = async (req, res) => {
   try {
-    const { fullName, email, password, roleId, branchId } = req.body
-
+    const { fullName, email, password,  branchId } = req.body
+   const roleId = parseInt(req.body.roleId) || 3 // Default to user role if not provided
     // Validate input
     if (!fullName || !email || !password) {
       return res.status(400).json({ message: "Please add all fields" })
@@ -147,6 +148,7 @@ exports.loginUser = async (req, res) => {
     const [roleRows] = await pool.query("SELECT role_name FROM roles WHERE role_id = ?", [user.role_id])
 
     const roleName = roleRows.length > 0 ? roleRows[0].role_name : "Unknown"
+    console.log("user id is"+user.user_id)
 
     res.json({
       id: user.user_id,
@@ -163,8 +165,9 @@ exports.loginUser = async (req, res) => {
       token: generateToken(user.user_id),
     })
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: "Server error" })
+    console.log(error)
+    //console.error(error)
+    //res.status(500).json({ message: "Server error" })
   }
 }
 

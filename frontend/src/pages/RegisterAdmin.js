@@ -1,4 +1,3 @@
-"use client"
 
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
@@ -18,7 +17,7 @@ function Register() {
     roleId: "", // Default empty role to force selection
     branchId: "", // Default empty branch to force selection
   })
-
+  const [submitted, setSubmitted] = useState(false)
   const { fullName, email, password, confirmPassword, roleId, branchId } = formData
 
   const navigate = useNavigate()
@@ -28,12 +27,36 @@ function Register() {
   const { branches, isLoading: branchesLoading } = useSelector((state) => state.branches)
   const { roles, isLoading: rolesLoading } = useSelector((state) => state.users)
 
+  // 🔄 Clear previous auth state when component mounts
+
   useEffect(() => {
+    dispatch(reset())
+  }, [dispatch])
+
+  // 📥 Load branches and roles
+  
+  useEffect(() => {
+    // this component is redirecting to login page.
     dispatch(getBranches())
     dispatch(getRoles())
   }, [dispatch])
+  
+//test component load
+
+/*
+return (
+  <div>
+    <h1>Hello, !</h1>
+    <p>Welcome to our React app.</p>
+  </div>
+);
+*/
+
+  // ✅ Handle success/failure feedback
+  
 
   useEffect(() => {
+    if (!submitted) return
     if (isError) {
       toast.error(message)
     }
@@ -46,8 +69,9 @@ function Register() {
     return () => {
       dispatch(reset())
     }
-  }, [isError, isSuccess, message, navigate, dispatch])
-
+  }, [isError, isSuccess, message,navigate, dispatch,submitted])
+  
+  
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -81,7 +105,7 @@ function Register() {
       branchId: branchId ? Number.parseInt(branchId) : null,
       isAdminCreating: true,
     }
-
+    setSubmitted(true)
     dispatch(register(userData))
   }
 
@@ -219,6 +243,7 @@ function Register() {
       </div>
     </div>
   )
+  
 }
 
 export default Register

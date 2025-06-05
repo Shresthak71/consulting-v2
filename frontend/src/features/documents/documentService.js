@@ -46,6 +46,12 @@ const updateDocumentType = async (documentId, documentData) => {
   return response.data
 }
 
+// Delete document type
+const deleteDocumentType = async (documentId) => {
+  const response = await axios.delete(`/documents/types/${documentId}`)
+  return response.data
+}
+
 const documentService = {
   uploadDocument,
   getApplicationDocuments,
@@ -54,6 +60,7 @@ const documentService = {
   getDocumentTypes,
   createDocumentType,
   updateDocumentType,
+  deleteDocumentType,
 }
 
 export default documentService

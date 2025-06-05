@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import { getStudents, deleteStudent, reset } from "../features/students/studentSlice"
-import Layout from "../components/Layout"
+//import Layout from "../components/Layout"
 import { toast } from "react-toastify"
 import { FaPlus, FaEdit, FaTrash, FaSearch, FaEye } from "react-icons/fa"
 import Spinner from "../components/Spinner"
@@ -64,7 +64,7 @@ function StudentList() {
   }
 
   return (
-    <Layout>
+    <>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-semibold text-gray-800">Students</h1>
@@ -204,7 +204,7 @@ function StudentList() {
           Are you sure you want to delete {studentToDelete?.full_name}? This action cannot be undone.
         </p>
       </Modal>
-    </Layout>
+    </>
   )
 }
 

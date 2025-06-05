@@ -8,12 +8,13 @@ exports.getBranches = async (req, res) => {
     // Admin can see all branches, others only see their own branch
     let query = "SELECT * FROM branches"
     let params = []
-
+/*
+//changed to allow public access
     if (req.user.role_id !== 1) {
       query = "SELECT * FROM branches WHERE branch_id = ?"
       params = [req.user.branch_id]
     }
-
+*/
     const [rows] = await pool.query(query, params)
 
     res.json(rows)

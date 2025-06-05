@@ -97,6 +97,17 @@ export const updateDocumentType = createAsyncThunk(
   },
 )
 
+// Delete document type
+export const deleteDocumentType = createAsyncThunk("documents/deleteType", async (documentId, thunkAPI) => {
+  try {
+    return await documentService.deleteDocumentType(documentId)
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    return thunkAPI.rejectWithValue(message)
+  }
+})
+
 export const documentSlice = createSlice({
   name: "document",
   initialState,
@@ -232,8 +243,22 @@ export const documentSlice = createSlice({
         state.isError = true
         state.message = action.payload
       })
+      .addCase(deleteDocumentType.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(deleteDocumentType.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.documentTypes = state.documentTypes.filter((type) => type.document_id !== action.meta.arg)
+      })
+      .addCase(deleteDocumentType.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
   },
 })
 
 export const { reset, setUploadProgress } = documentSlice.actions
 export default documentSlice.reducer
+export const {} = documentSlice.actions

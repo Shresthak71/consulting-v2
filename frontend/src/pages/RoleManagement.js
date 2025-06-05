@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { getUsers, getRoles, updateUserRole, reset } from "../features/users/userSlice"
-import Layout from "../components/Layout"
+//import Layout from "../components/Layout"
 import { toast } from "react-toastify"
 import { FaUserShield, FaSearch, FaSave } from "react-icons/fa"
 import Spinner from "../components/Spinner"
@@ -97,19 +97,19 @@ function RoleManagement() {
 
   if (!isSuperAdmin) {
     return (
-      <Layout>
+      <>
         <div className="container mx-auto px-4">
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             <strong className="font-bold">Access Denied!</strong>
             <span className="block sm:inline"> You do not have permission to access this page.</span>
           </div>
         </div>
-      </Layout>
+      </>
     )
   }
 
   return (
-    <Layout>
+    <>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-semibold text-gray-800">Role Management</h1>
@@ -292,7 +292,7 @@ function RoleManagement() {
           </div>
         )}
       </Modal>
-    </Layout>
+    </>
   )
 }
 

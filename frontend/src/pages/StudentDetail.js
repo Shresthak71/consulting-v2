@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams, useNavigate, Link } from "react-router-dom"
 import { getStudentById, getStudentApplications, reset } from "../features/students/studentSlice"
-import Layout from "../components/Layout"
+//import Layout from "../components/Layout"
 import { toast } from "react-toastify"
 import {
   FaUser,
@@ -46,7 +46,7 @@ function StudentDetail() {
   }
 
   return (
-    <Layout>
+    <>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-semibold text-gray-800">Student Details</h1>
@@ -190,7 +190,7 @@ function StudentDetail() {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   )
 }
 

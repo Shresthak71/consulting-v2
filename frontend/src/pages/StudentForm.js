@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { createStudent, getStudentById, updateStudent, reset, clearStudent } from "../features/students/studentSlice"
 import { getBranches } from "../features/branches/branchSlice"
 import { getUsers } from "../features/users/userSlice"
-import Layout from "../components/Layout"
+//import Layout from "../components/Layout"
 import { toast } from "react-toastify"
 import { FaSave, FaArrowLeft } from "react-icons/fa"
 import Spinner from "../components/Spinner"
@@ -119,7 +119,7 @@ function StudentForm() {
   }
 
   return (
-    <Layout>
+    <>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-semibold text-gray-800">{isEditMode ? "Edit Student" : "Add Student"}</h1>
@@ -237,7 +237,7 @@ function StudentForm() {
           </form>
         </div>
       </div>
-    </Layout>
+    </>
   )
 }
 

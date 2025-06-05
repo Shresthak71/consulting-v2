@@ -3,7 +3,7 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { getDashboardStats, getApplicationTrends, getDocumentStats, reset } from "../features/dashboard/dashboardSlice"
-import Layout from "../components/Layout"
+//import Layout from "../components/Layout"
 import { FaUsers, FaFileAlt, FaClipboardCheck, FaExclamationTriangle, FaGlobe, FaBuilding } from "react-icons/fa"
 import { Bar, Line, Pie } from "react-chartjs-2"
 import { Chart, registerables } from "chart.js"
@@ -88,7 +88,7 @@ function Dashboard() {
   }
 
   return (
-    <Layout>
+    <>
       <div className="container mx-auto px-4">
         <h1 className="text-2xl font-semibold text-gray-800 mb-6">Dashboard</h1>
 
@@ -367,7 +367,7 @@ function Dashboard() {
           </>
         )}
       </div>
-    </Layout>
+    </>
   )
 }
 

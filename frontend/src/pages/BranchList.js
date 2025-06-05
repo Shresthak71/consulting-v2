@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import { getBranches, deleteBranch, reset } from "../features/branches/branchSlice"
-import Layout from "../components/Layout"
+//import Layout from "../components/Layout"
 import { toast } from "react-toastify"
 import { FaPlus, FaEdit, FaTrash, FaSearch, FaBuilding, FaUsers } from "react-icons/fa"
 import Spinner from "../components/Spinner"
@@ -65,7 +65,7 @@ function BranchList() {
   }
 
   return (
-    <Layout>
+    <>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-semibold text-gray-800">Branches</h1>
@@ -207,7 +207,7 @@ function BranchList() {
           Note: Branches with associated users or students cannot be deleted.
         </p>
       </Modal>
-    </Layout>
+    </>
   )
 }
 

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import { getUsers, deleteUser, reset } from "../features/users/userSlice"
 import { getBranches } from "../features/branches/branchSlice"
-import Layout from "../components/Layout"
+//import Layout from "../components/Layout"
 import { toast } from "react-toastify"
 import { FaPlus, FaEdit, FaTrash, FaSearch, FaUser } from "react-icons/fa"
 import Spinner from "../components/Spinner"
@@ -73,7 +73,7 @@ function UserList() {
   }
 
   return (
-    <Layout>
+    <>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-semibold text-gray-800">Users</h1>
@@ -147,11 +147,11 @@ function UserList() {
                           ${user.role?.id === 3 ? "bg-green-100 text-green-800" : ""}
                         `}
                         >
-                          {user.role?.name || "N/A"}
+                          {user.role?.role_name || "N/A"}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">{user.branch?.name || "N/A"}</div>
+                        <div className="text-sm text-gray-900">{user.branch?.branch_name || "N/A"}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <div className="flex justify-end space-x-2">
@@ -214,7 +214,7 @@ function UserList() {
           Are you sure you want to delete {userToDelete?.full_name}? This action cannot be undone.
         </p>
       </Modal>
-    </Layout>
+    </>
   )
 }
 
